@@ -1,0 +1,131 @@
+<html>
+	<head>
+	</head>
+	<body>
+        <style>
+            /* generic page styles */
+            body { font-family: Tahoma; }
+
+            div[id*="example"]
+            {
+                width: 30em;
+                border-radius: 0.5em;
+                border: 1px solid rgba(0,0,0,0.5);
+                display: inline-block;
+                text-align: center;
+                margin: 0.5em;
+                vertical-align: top;
+            }
+
+            textarea[id*="input"]
+            {
+                min-height: 15em;
+                max-height: 15em;
+                resize: none;
+                padding: 0.5em;
+                border: 0;
+                font-size: 1.2em;
+                font-weight: bold;
+                width: 100%;
+                color: #eee;
+                background-color: #292929;
+            }
+
+            div[id*="preview"]
+            {
+                text-align: left;
+                border: 0;
+                padding: 0.5em;
+                min-height: 15em;
+                max-height: 15em;
+                overflow: auto;
+            }
+
+            th, td
+            {
+                border: 1px solid #333;
+            }
+
+        </style>
+
+
+        <div id="playground-example">
+            <h2>Playground</h2>
+            <textarea id="playground-input" data-bind="textInput: Playground"></textarea>
+            <div id="playground-preview" data-bind="markdown: Playground"></div>
+        </div>
+
+        <div id="headers-example">
+            <h2>Example of Headers</h2>
+            <textarea id="headers-input" readonly="readonly" data-bind="textInput: HeadersExample"></textarea>
+            <div id="headers-preview" data-bind="markdown: HeadersExample"></div>
+        </div>
+
+        <div id="text-style-example">
+            <h2>Example of Text Styles</h2>
+            <textarea id="text-stype-input" readonly="readonly"  data-bind="textInput: TextStyleExample"></textarea>
+            <div id="text-style-preview" data-bind="markdown: TextStyleExample"></div>
+        </div>
+
+        <div id="list-example">
+            <h2>Example of Lists</h2>
+            <textarea id="lists-input" readonly="readonly" data-bind="textInput: ListsExample"></textarea>
+            <div id="lists-preview" data-bind="markdown: ListsExample"></div>
+        </div>
+
+        <div id="table-example">
+            <h2>Example of Tables</h2>
+            <textarea id="table-input" readonly="readonly" data-bind="textInput: TableExample"></textarea>
+            <div id="table-preview" data-bind="markdown: TableExample"></div>
+        </div>
+
+        <script src="libs/knockout-3.3.0.min.js" type="text/javascript"></script>
+        <script src="libs/markdown-it.min.js" type="text/javascript"></script>
+        <script src="src/knockout.markdown.js" type="text/javascript"></script>
+
+        <script>
+            function MarkdownExamples()
+            {
+               this.HeadersExample = ko.observable(
+                       "# This is a header \n" +
+                       "## This is a smaller header \n" +
+                       "### This is an even smaller header");
+
+               this.TextStyleExample = ko.observable(
+                       "## Emphasis \n\n" +
+                       "**This is bold text** \n\n" +
+                       "__This is bold text__\n\n" +
+                       "*This is italic text*\n\n" +
+                       "_This is italic text_\n\n" +
+                       "~~Strikethrough~~");
+
+               this.ListsExample = ko.observable(
+                       "Unordered\n\n" +
+                       "+ Create a list by starting a line with `+`, `-`, or `*`\n" +
+                       "+ Sub-lists are made by indenting 2 spaces:\n" +
+                       "  - Marker character change forces new list start:\n" +
+                       "    * Ac tristique libero volutpat at\n" +
+                       "    + Facilisis in pretium nisl aliquet\n" +
+                       "    - Nulla volutpat aliquam velit\n" +
+                       "    + Very easy!\n\n" +
+                       "Ordered\n\n" +
+                       "1. Lorem ipsum dolor sit amet\n" +
+                       "2. Consectetur adipiscing elit\n" +
+                       "3. Integer molestie lorem at massa");
+
+
+               this.TableExample = ko.observable(
+                       "| Column 1 | Some Other Column |\n" +
+                       "|----------|-------------------|\n" +
+                       "| Such     | Amaze |\n" +
+                       "| Much     | Table |\n" +
+                       "| Very     | Aligned |\n");
+
+                this.Playground = ko.observable("# Do what you want here");
+            }
+
+
+            ko.applyBindings(new MarkdownExamples());
+        </script>
+	</body>
+</html>
